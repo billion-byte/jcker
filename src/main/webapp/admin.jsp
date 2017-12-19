@@ -87,7 +87,7 @@
             enable: true,
             contentType: "application/json",
             dataType: "json",
-            url: "/getPublishedBlog/true/true"
+            url: "/blog/getPublishedBlog/true/true"
         },
         edit: {
             enable: true,
@@ -117,7 +117,7 @@
             enable: true,
             contentType: "application/json",
             dataType: "json",
-            url: "/getUnpublishedBlog/true"
+            url: "/blog/getUnpublishedBlog/true"
         },
         edit: {
             enable: true,
@@ -151,7 +151,7 @@
                 alert('目录不能为空');
                 return;
             }
-            $.post( "/createCategory/"+category.val().trim(), function(data) {
+            $.post( "/blog/createCategory/"+category.val().trim(), function(data) {
                 $('#exampleModal').modal('hide');
                 if(data) {
                     alert("create [" + category.val() +"] Succeed");
@@ -171,7 +171,7 @@
             }
         }
 
-        $.post( "/changeBlogCategory", {treeNode: JSON.stringify(treeNodes[0]), targetNode: JSON.stringify(targetNode)}, function( data ) {
+        $.post( "/blog/changeBlogCategory", {treeNode: JSON.stringify(treeNodes[0]), targetNode: JSON.stringify(targetNode)}, function( data ) {
             if(data) {
                 alert("Change Succeed");
                 return true;
@@ -205,7 +205,7 @@
         }
         var zTree = $.fn.zTree.getZTreeObj(treeId);
         zTree.selectNode(treeNode);
-        $.post( "/deleteBlog", {treeNode: JSON.stringify(treeNode)}, function(data) {
+        $.post( "/blog/deleteBlog", {treeNode: JSON.stringify(treeNode)}, function(data) {
             if(data) {
                 alert("Delete Succeed");
                 return true;

@@ -1,5 +1,7 @@
 package org.jcker.smartqq.controller;
 
+import org.apache.log4j.Logger;
+import org.jcker.smartqq.callback.JckerSmartqqWebSocketHandler;
 import org.jcker.smartqq.callback.MessageCallback;
 import org.jcker.smartqq.client.SmartQQClient;
 import org.jcker.smartqq.domain.Group;
@@ -14,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.util.List;
@@ -28,6 +31,7 @@ import java.util.Map;
 @Controller
 @RequestMapping("/smartqq")
 public class SmartqqController {
+    private static Logger log = Logger.getLogger(SmartqqController.class);
     @Autowired
     private GroupService groupService;
     @Autowired
@@ -87,12 +91,12 @@ public class SmartqqController {
     /**
      * start qq
      *
-     * @param model model
      * @return
      * @throws IOException
      */
+    @ResponseBody
     @RequestMapping({"/login"})
-    public String login(Model model) throws IOException {
+    public String login() throws IOException {
         if (!loginFlag) {
             client = new SmartQQClient(this.messageCallback);
             loginFlag = true;
@@ -104,23 +108,24 @@ public class SmartqqController {
                 group.setId(groupInfo.getCreatetime());
                 groupService.saveGroup(group);
             }
+            return "true";
         } else {
-            model.addAttribute("userInfo", client.getAccountInfo());
-            return "error";
+            return "false" + client.getAccountInfo().getUin();
         }
-        return "redirect:/";
     }
 
+    @ResponseBody
     @RequestMapping({"/logout"})
-    public String logout() {
+    public boolean logout() {
         try {
             client.close();
             loginFlag = false;
-            System.out.println("smart qq closed.......................");
+            log.info("smart qq closed.......................");
+            return true;
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "smartqq/index";
+        return false;
     }
 
     @RequestMapping({"/reload"})
@@ -149,21 +154,15 @@ public class SmartqqController {
         return "/";
     }
 
+    @ResponseBody
     @RequestMapping("/scan")
-    public void qrcode(HttpServletResponse response) throws IOException {
-        response.setContentType("image/png");
+    public boolean qrcode(HttpServletRequest request) throws IOException {
+        String path = request.getServletContext().getRealPath("/assets/img/");
         File file = new File(SmartQQClient.filePath);
         if (file.exists()) {
-            InputStream in = new FileInputStream(file);
-            OutputStream os = response.getOutputStream();
-            byte[] b = new byte[1024];
-            while (in.read(b) != -1) {
-                os.write(b);
-            }
-            in.close();
-            os.flush();
-            os.close();
+            return file.renameTo(new File(path + file.getName()));
         }
+        return false;
     }
 
     /**

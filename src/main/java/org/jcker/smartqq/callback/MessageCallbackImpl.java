@@ -61,7 +61,7 @@ public class MessageCallbackImpl
             ObjectMapper mapper = new ObjectMapper();
             String messageString = mapper.writeValueAsString(message);
             this.jckerSmartqqWebSocketHandler.handleMessage(null, new TextMessage(messageString));
-            System.out.println("message = " + message);
+//            log.info(message);
         } catch (Exception e) {
             e.printStackTrace();
         }

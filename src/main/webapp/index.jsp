@@ -15,11 +15,11 @@
     <link href="assets/commons/sticky-footer-navbar.css" rel="stylesheet">
     <link href="assets/css/ztree.css" rel="stylesheet"/>
     <style rel="stylesheet">
-        .boolean{color:red;}
-        .number{color:green;}
+        .boolean{color:blue;}
+        .number{color:darkorange;}
         .string{color:green;}
-        .key{color:yellow;}
-        .null{color:blue;}
+        .key{color:red;}
+        .null{color:magenta;}
 
     </style>
 </head>
@@ -32,7 +32,7 @@
     <div class="collapse navbar-collapse justify-content-md-center" id="containerNavbarCenter">
         <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="/index.jsp">首页<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/">首页<span class="sr-only">(current)</span></a>
             </li>
         </ul>
     </div>
@@ -44,8 +44,23 @@
             </ul>
         </div>
         <div class="col-md-6">
-            <div id="groupinfo"></div>
-            <div id="message"></div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="groupinfo">Jcker---461217554</div>
+                    <div id="message">
+                        <div class="json">
+                            {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="key">groupId</span>: <span class="number">461217554</span>,<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="key">time</span>: <span class="number">2017-12-19</span>,<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="key">content</span>: <span class="string">Java开源博客Jcker（简客）</span>,<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="key">userId</span>: <span class="number">570577029</span>,<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="key">nickname</span>: <span class="string">百年孤独</span><br>
+                            }<br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -58,10 +73,12 @@
                     </button>
                 </div>
                 <div class="modal-body">
-
+                    <div class="row">
+                        <img id="qrcodeimg" src="assets/img/wechat_qrcode.jpg" class="img-thumbnail mx-auto" style="max-width: 20rem;" alt="欢迎关注微信公众号">
+                    </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="reset" class="btn btn-secondary" data-dismiss="modal">重新加载</button>
+                    <button type="button" id="scanqrcode" class="btn btn-secondary" >加载QQ二维码</button>
                 </div>
             </div>
         </div>
@@ -70,9 +87,8 @@
 <footer class="footer">
     <div class="container">
         <p class="text-center">Copyright &copy; jcker.org 2017&nbsp;
-            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModal">
-            登录
-            </button>
+            <button type="button" id="login" class="btn btn-link" data-toggle="modal" data-target="#exampleModal">登录</button>
+            <button type="button" id="logout" class="btn btn-link" data-toggle="modal">退出</button>
         </p>
     </div>
 </footer>
@@ -108,23 +124,56 @@
         $(function () {
             $.fn.zTree.init($("#category"), setting, null);
 
+            initWebSocket();
 
-            var ws = new WebSocket("ws://" + location.host + "${basePath}/websocket/qqmessage");
-            ws.onopen = function () {
-                console.log("websocket connected...");
-            };
-            ws.onmessage = function (event) {
-                var message = JSON.parse(event.data);
-                $("#message").html(ObjectToHtml(event.data));
-
-                $.getJSON("${basePath}/smartqq/group/" + message.groupId, function (group) {
-                    $("#groupinfo").html( group.name + '---'+group.owner);
+            $("#login").click(function () {
+                $.post("/smartqq/login",function (data) {
+                    console.log(data);
+                    if (!data){
+                        alert("启动登录失败");
+                    }
                 });
-            };
-            ws.onclose = function (event) {
-                console.log(event.data);
-            };
+            });
+
+            $("#logout").click(function () {
+                $.post("/smartqq/logout",function (data) {
+                    console.log(data);
+                    if (data){
+                        alert("退出成功");
+                    }else{
+                        alert("退出失败");
+                    }
+                });
+            });
+
+            $("#scanqrcode").click(function () {
+                $("#qrcodeimg").attr("src", "/assets/img/wechat_qrcode.jpg");
+                $.get("/smartqq/scan",function (data) {
+                    console.log(data);
+                    $("#qrcodeimg").attr("src","/assets/img/qrcode.png");
+                });
+            });
+
     });
+
+
+    function initWebSocket() {
+        var ws = new WebSocket("ws://" + location.host + "${basePath}/websocket/qqmessage");
+        ws.onopen = function () {
+            console.log("websocket connected...");
+        };
+        ws.onmessage = function (event) {
+            var message = JSON.parse(event.data);
+            $("#message").html(ObjectToHtml(event.data));
+
+            $.getJSON("/smartqq/group/" + message.groupId, function (group) {
+                $("#groupinfo").html( group.name + '---'+group.owner);
+            });
+        };
+        ws.onclose = function (event) {
+            console.log(event.data);
+        };
+    }
 
     function ObjectToHtml(data) {
         // 若传入数值为json，则转换为字符串
@@ -179,7 +228,7 @@
             }
             str += (isLast ? '' : ',') + (inArray ? '' : (line + getTab(isLast ? --indent : indent)));
             return str;
-        }
+        };
         return ('<div class="json">' + format(obj, 0, true) + '</div>');
     }
 </script>

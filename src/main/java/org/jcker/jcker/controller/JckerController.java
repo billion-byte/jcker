@@ -40,6 +40,6 @@ public class JckerController {
     public String admin(HttpServletRequest request) {
         BlogController.BASE_PATH = request.getServletContext().getRealPath("/");
 
-        return "admin";
+        return "/admin";
     }
 }
