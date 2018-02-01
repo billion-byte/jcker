@@ -23,5 +23,5 @@
 QQ群：461217554
 
 微信公众号：jcker
-![微信公众号](src/main/resources/static/img/wechat_qrcode.jpg) 
+![微信公众号](jcker-web/src/main/resources/img/wechat_qrcode.jpg) 
 
