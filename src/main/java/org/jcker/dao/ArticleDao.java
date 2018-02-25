@@ -2,6 +2,9 @@ package org.jcker.dao;
 
 import org.jcker.domain.Article;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import java.util.List;
 
 /**
  * Created by <a href='http://jcker.org'>Alan Turing</a>
@@ -10,5 +13,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @version 1.0
  */
 public interface ArticleDao extends JpaRepository<Article, Integer> {
+
+    @Query(value = "select t.* from t_article t limit 10 ", nativeQuery = true)
+    List<Article> findRecentArticles();
 
 }

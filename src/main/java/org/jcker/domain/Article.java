@@ -17,6 +17,45 @@ public class Article {
     @Column(columnDefinition = "TEXT")
     private String content;
     private String title;
+    private String url;
+    @Column(name = "create_date")
+    private String createDate;
+    @Column(name = "view_num")
+    private int viewNum;
+    @Column(name = "comment_num")
+    private int commentNum;
+
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
+    }
+
+    public int getViewNum() {
+        return viewNum;
+    }
+
+    public void setViewNum(int viewNum) {
+        this.viewNum = viewNum;
+    }
+
+    public int getCommentNum() {
+        return commentNum;
+    }
+
+    public void setCommentNum(int commentNum) {
+        this.commentNum = commentNum;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     public int getId() {
         return id;

@@ -20,9 +20,14 @@
             <div class="col-sm-4">
                 <label>最新文章</label>
                 <ul id="recent_articles" class="list-group" style="list-style: none;">
+                <#if recent_articles??>
                     <#list recent_articles as article>
                         <li id="${article.id}"><a href="/article/${article.id}">${article.title}</a> </li>
                     </#list>
+                <#else>
+                    <a href="http://java.jcker.org">java.jcker.org</a>
+                </#if>
+
                 </ul>
             </div>
             <div class="col-sm-4">
@@ -44,3 +49,5 @@
     <script src="../jcker/js/toolkit.js"></script>
     <script src="../jcker/js/application.js"></script>
 </footer>
+</body>
+</html>

@@ -2,6 +2,7 @@ package org.jcker.controller;
 
 import org.apache.log4j.Logger;
 import org.jcker.dao.ArticleDao;
+import org.jcker.dao.MenuDao;
 import org.jcker.domain.Article;
 import org.jcker.utils.JckerUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by <a href='http://jcker.org'>Alan Turing</a>
@@ -24,21 +28,49 @@ public class ArticleController {
 
     @Autowired
     ArticleDao articleDao;
+    @Autowired
+    MenuDao menuDao;
 
     @RequestMapping("/")
-    public String index() {
+    public String index(Model model) {
+        model.addAttribute("menuList",menuDao.findAll());
+        List<Article> articleList = articleDao.findRecentArticles();
+        for (Article article : articleList) {
+            article.setContent(JckerUtils.mdToHtml(article.getContent()));
+        }
+        model.addAttribute("articleList", articleList);
+        return "index";
+    }
 
-        return "article_editor";
+    @RequestMapping("/about")
+    public String about(Model model) {
+        model.addAttribute("menuList",menuDao.findAll());
+        List<Article> articleList = articleDao.findRecentArticles();
+        for (Article article : articleList) {
+            article.setContent(JckerUtils.mdToHtml(article.getContent()));
+        }
+        model.addAttribute("articleList", articleList);
+        return "about";
     }
 
     @RequestMapping("/admin/save_article")
-    public String save(Article article) {
+    public String save(Article article, Model model) {
 
         System.out.println("article = " + article);
-
+        article.setCommentNum(new Random().nextInt());
+        article.setViewNum(new Random().nextInt());
+        article.setCreateDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
         articleDao.save(article);
-        log.info("-------------");
+        model.addAttribute("menuList",menuDao.findAll());
+        model.addAttribute("articleList", articleDao.findAll());
         return "index";
+    }
+    @RequestMapping("/admin/edit_article/{id}")
+    public String edit(@PathVariable int id, Model model) {
+        Article article = articleDao.findOne(id);
+        System.out.println("article = " + article);
+        model.addAttribute("article", article);
+        return "article_editor";
     }
 
     @RequestMapping("/article/{id}")
@@ -53,5 +85,11 @@ public class ArticleController {
         model.addAttribute("recent_articles", articleList);
         model.addAttribute("article", article);
         return "page";
+    }
+
+    @RequestMapping("/create_article")
+    public String create() {
+        return "article_editor";
+
     }
 }

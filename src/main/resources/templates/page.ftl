@@ -24,17 +24,15 @@
     <script>hljs.initHighlightingOnLoad();</script>
     <style>
         body {
-            margin-top: 100px;
             width: 1px;
             min-width: 100%;
-            *width: 100%;
         }
 
     </style>
 </head>
 
 
-<body class="ayy">
+<body>
 
 <#include "common/header.ftl">
 
