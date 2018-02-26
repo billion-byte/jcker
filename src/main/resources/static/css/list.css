@@ -1,5 +1,5 @@
-@charset "gb2312";
-/* »ÃµÆÆ¬ */
+@charset "utf-8";
+/* å¹»ç¯ç‰‡ */
 .covers,#slide-holder{ height : 200px; width : 300px; overflow : hidden; }
 #slide-runner { height : 200px; width : 300px; overflow : hidden; position : absolute; }
 #slide-holder img { position : absolute; }
@@ -9,7 +9,7 @@
 #slide-controls p#slide-nav a { float : left; width : 24px; height : 24px; display : inline; font-size : 11px; margin : 0 5px 0 0; line-height : 24px; text-align : center; color: #fff }
 #slide-controls p#slide-nav a.on { background-position : 0 -24px; }
 #slide-controls p#slide-nav a { background-image : url(../../static/images/silde-nav.png); }
-/*×óÎÄÕÂÁĞ±í*/
+/*å·¦æ–‡ç« åˆ—è¡¨*/
 .topnews { margin: 20px 0; }
 .topnews h2 { font-size: 16px; font-weight: bold; line-height: 36px; color: #333; border-bottom: #db6d4c 4px solid; }
 .topnews h2 b { }
@@ -32,14 +32,14 @@
 .dtime { background: url(../../static/images/newsbg02.png) no-repeat left center }
 .viewnum { background: url(../../static/images/newsbg04.png) no-repeat left center }
 .pingl { background: url(../../static/images/newsbg03.png) no-repeat left center }
-/*ÁĞ±í·ÖÒ³*/
+/*åˆ—è¡¨åˆ†é¡µ*/
 .page{ margin:20px 0 ; text-align:center; width:100%;overflow: hidden;}
 .page a b {color: #999;}
 .page>b,.page a {margin: 0 2px;height: 26px;line-height: 26px;border-radius: 50%;width: 26px;text-align: center;display: inline-block}
-.page a {margin: 0 2px;height: 26px;line-height: 26px;border-radius: 50%;width: 26px;text-align: center;display: inline-block}/* Õë¶ÔIE6 */
+.page a {margin: 0 2px;height: 26px;line-height: 26px;border-radius: 50%;width: 26px;text-align: center;display: inline-block}/* é’ˆå¯¹IE6 */
 .page>b,.page a:hover{background: #333;color: #FFF;}
 .page a {color: #F33;border: #999 1px solid;}
-/*Í¼ÎÄÁĞ±í*/
+/*å›¾æ–‡åˆ—è¡¨*/
 .tuwen { width: 100%; clear: both; overflow: hidden; margin: 20px 0 }
 .tuwen h3 { line-height: 40px; color: #38485A; font-size: 18px; border-bottom: 1px solid #E6E6E6; height: 40px; margin-bottom: 30px }
 .tuwen li { overflow: hidden; clear: both; margin-bottom: 10px }
@@ -53,10 +53,10 @@
 .tulanmu a:hover { color: #066 }
 .tutime { background: url(../../static/images/datepng.png) no-repeat left center; padding-left: 15px }
 .tuwen li:hover { background: #f4f3f3 }
-/*Ê×Ò³ÓÒ²à¹ã¸æ 300*/
+/*é¦–é¡µå³ä¾§å¹¿å‘Š 300*/
 .ad { width: 300px; overflow: hidden; margin: 30px 0 }
 .ad img { width: 300px; }
-/*ÓÑÇéÁ´½Ó*/
+/*å‹æƒ…é“¾æ¥*/
 .links { width: 100%; overflow: hidden; clear: both }
 .links h3 { line-height: 40px; color: #38485A; font-size: 18px; border-bottom: 1px solid #E6E6E6; height: 40px; margin-bottom: 20px }
 .links h3 span { float: right; font-size: 12px; }

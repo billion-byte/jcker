@@ -1,11 +1,11 @@
-<#include "common/header.ftl">
+<#include "header.ftl">
 
 <div class="container">
-    <div class="bw docs-content">
-        <h1>${article.title}</h1>
+    <div class="page">
+        <h1><a href="/article/${article.id}">${article.title}</a></h1>
         ${article.content}
         <a class="docs-top" style="display: none" href="#">回到顶部</a>
     </div>
 </div>
 
-<#include "common/footer.ftl">
+<#include "footer.ftl">

@@ -1,0 +1,23 @@
+@charset "utf-8";
+/* CSS Document */
+#main { overflow: hidden }
+.page {
+    max-width: 700px;
+    padding: 130px 25px 20px;
+}
+
+.page h1{
+    font-size: 18px;
+}
+
+a:active, a:focus, a:hover {
+    color: #eb5055;
+    outline: 0;
+    outline-width: 0px;
+    outline-style: none;
+    outline-color: currentcolor;
+
+    text-decoration-color: currentcolor;
+    text-decoration-line: none;
+    text-decoration-style: solid;
+}

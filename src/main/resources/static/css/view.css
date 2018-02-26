@@ -1,5 +1,5 @@
-@charset "gb2312";
-/* »ÃµÆÆ¬ */
+@charset "utf-8";
+/* å¹»ç¯ç‰‡ */
 
 #myFocus { width: 300px; height: 200px; }
 .banner { width : 300px; overflow : hidden; }
@@ -14,7 +14,7 @@
 #slide-controls p#slide-nav a.on { background-position : 0 -24px; }
 #slide-controls p#slide-nav a { background-image : url(../images/silde-nav.png); }
 
-/*×óÎÄÕÂÁĞ±í*/
+/*å·¦æ–‡ç« åˆ—è¡¨*/
 .topnews { margin: 0 0 20px 0; width: 670px; overflow: hidden }
 .topnews h2 { font-size: 14px; line-height: 36px; color: #666; background: url(../../static/images/lct.png) left center no-repeat; padding-left: 30px }
 .topnews h2 a { color: #333; margin: 0 5px }
@@ -26,29 +26,29 @@
 .au02 { background: url(../../static/images/date.png) no-repeat left center }
 .au03 b { color: #333; padding: 0 5px }
 .au04{ background: #38475a; color: #FFF; font-weight: normal; padding: 3px 8px; position: absolute; right: 21px; top: 0; border-radius:3px  }
-.au04:after{content: "";  position: absolute; left:26px; top: 20px; width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 10px solid #38475a; }/*Èı½ÇĞÎ*/
+.au04:after{content: "";  position: absolute; left:26px; top: 20px; width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 10px solid #38475a; }/*ä¸‰è§’å½¢*/
 .news_about { color: #888888; border: 1px solid #F3F3F3; padding: 10px; margin: 20px auto 15px auto; line-height: 23px; background: none repeat 0 0 #F6F6F6; }
 .news_about strong { color: #38485A; font-weight: 400 !important; font-size: 13px; padding-right: 8px; }
 .news_content { line-height: 24px ;font-size: 14px;}
 .news_content p { overflow: hidden; padding-bottom: 4px; padding-top: 6px; word-wrap: break-word; }
 .tags a {background: #F4650E;padding: 3px 8px;margin: 0 5px 0 0;color: #fff;}
 .tags {margin: 10px 0;}
-.fenx { margin: 20px 0 }/*·ÖÏí*/
-.nextinfo { line-height: 24px; }/*ÉÏÒ»ÆªÏÂÒ»Æª*/
+.fenx { margin: 20px 0 }/*åˆ†äº«*/
+.nextinfo { line-height: 24px; }/*ä¸Šä¸€ç¯‡ä¸‹ä¸€ç¯‡*/
 .nextinfo a:hover { color: #000; text-decoration: underline }
-/*Ïà¹ØÎÄÕÂ*/
+/*ç›¸å…³æ–‡ç« */
 .otherlink { width: 100%; overflow: hidden; clear: both }
 .otherlink h2 { border-bottom: #099 2px solid; line-height: 40px; font-size: 14px; background: url(../../static/images/5794.png) left center no-repeat; padding-left: 30px; color: #000 }
 .otherlink ul { margin: 10px 0 }
 .otherlink li { line-height: 24px; height: 24px; display: block; width: 290px; float: left; overflow: hidden; margin-right: 30px; }
 .otherlink li a:hover { text-decoration: underline; color: #09C }
-/*ÎÄÕÂÆÀÂÛ*/
+/*æ–‡ç« è¯„è®º*/
 .news_pl { margin: 10px 0; }
 .news_pl h2 { background: url(../../static/images/newsbg03.png) no-repeat left center; border-bottom: #099 2px solid; line-height: 40px; font-size: 14px; padding-left: 20px; color: #000 }
-/*Ê×Ò³ÓÒ²à¹ã¸æ 300*/
+/*é¦–é¡µå³ä¾§å¹¿å‘Š 300*/
 .ad { width: 300px; overflow: hidden; margin: 30px 0 }
 .ad img { width: 300px; }
-/*ÓÑÇéÁ´½Ó*/
+/*å‹æƒ…é“¾æ¥*/
 .links { width: 100%; overflow: hidden; clear: both }
 .links h3 { line-height: 40px; color: #38485A; font-size: 18px; border-bottom: 1px solid #E6E6E6; height: 40px; margin-bottom: 20px }
 .links h3 span { float: right; font-size: 12px; }

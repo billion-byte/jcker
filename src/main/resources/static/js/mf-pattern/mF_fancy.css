@@ -1,4 +1,4 @@
-@charset "gb2312";
+@charset "utf-8";
 /* CSS Document */
 
 /*=========mF_fancy ========*/
@@ -9,8 +9,8 @@
 .mF_fancy .pic ul li{ position:absolute;top:0;left:0; display:none; overflow:hidden;}
 .mF_fancy .txt{position:absolute;z-index:2; top:12px;left:12px; width:80%; color:#fff;}
 .mF_fancy .txt li{position:absolute;top:0;width:100%; padding:12px; visibility:hidden; opacity:0;-webkit-transition:all .4s;-moz-transition:all .4s;-o-transition:all .4s;}
-.mF_fancy .txt li a{display:block;color:#fff;font-size:14px;font-weight:bold;text-decoration:none; font-family:'Î¢ÈíÑÅºÚ';}/*±êÌâÑùÊ½*/
-.mF_fancy .txt li p{ display:none;}/*Òş²ØÏêÏ¸ÃèÊöÎÄ×Ö*/
+.mF_fancy .txt li a{display:block;color:#fff;font-size:14px;font-weight:bold;text-decoration:none; font-family:'å¾®è½¯é›…é»‘';}/*æ ‡é¢˜æ ·å¼*/
+.mF_fancy .txt li p{ display:none;}/*éšè—è¯¦ç»†æè¿°æ–‡å­—*/
 .mF_fancy .txt li.current{ visibility:visible; opacity:1;}
 .mF_fancy .num{ position:absolute;bottom:0;left:0;width:100%; overflow:hidden;}
 .mF_fancy .num ul{width:120%; background:#666; margin-left:-1px;}

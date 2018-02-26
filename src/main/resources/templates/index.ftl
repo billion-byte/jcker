@@ -1,4 +1,4 @@
-<#include "common/header.ftl">
+<#include "header.ftl">
 <div class="container">
     <article>
         <#if articleList??>
@@ -22,4 +22,4 @@
         </#if>
     </article>
 </div>
-<#include "common/footer.ftl">
+<#include "footer.ftl">

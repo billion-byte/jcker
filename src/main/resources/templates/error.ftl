@@ -5,8 +5,8 @@
     <title>Error</title>
 </head>
 <body>
-<#include "common/header.ftl">
+<#include "header.ftl">
 hello world
-<#include "common/footer.ftl">
+<#include "footer.ftl">
 </body>
 </html>

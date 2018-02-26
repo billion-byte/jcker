@@ -1,7 +1,7 @@
-<#include "common/header.ftl">
+<#include "header.ftl">
 <div class="container">
     <div class="about">
         about me.....
     </div>
 </div>
-<#include "common/footer.ftl">
+<#include "footer.ftl">
