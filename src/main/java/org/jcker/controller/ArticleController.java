@@ -2,8 +2,10 @@ package org.jcker.controller;
 
 import org.apache.log4j.Logger;
 import org.jcker.dao.ArticleDao;
+import org.jcker.dao.FriendLinkDao;
 import org.jcker.dao.MenuDao;
 import org.jcker.domain.Article;
+import org.jcker.domain.FriendLink;
 import org.jcker.utils.JckerUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,6 +32,8 @@ public class ArticleController {
     ArticleDao articleDao;
     @Autowired
     MenuDao menuDao;
+    @Autowired
+    FriendLinkDao friendLinkDao;
 
     @RequestMapping("/")
     public String index(Model model) {
@@ -39,6 +43,7 @@ public class ArticleController {
             article.setContent(JckerUtils.mdToHtml(article.getContent()));
         }
         model.addAttribute("articleList", articleList);
+        model.addAttribute("friendLinkList", friendLinkDao.findAll());
         return "index";
     }
 
@@ -57,8 +62,8 @@ public class ArticleController {
     public String save(Article article, Model model) {
 
         System.out.println("article = " + article);
-        article.setCommentNum(new Random().nextInt());
-        article.setViewNum(new Random().nextInt());
+        article.setCommentNum(new Random(100).nextInt(100));
+        article.setViewNum(new Random(1000).nextInt(10000));
         article.setCreateDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
         articleDao.save(article);
         model.addAttribute("menuList",menuDao.findAll());
@@ -87,7 +92,7 @@ public class ArticleController {
         return "page";
     }
 
-    @RequestMapping("/create_article")
+    @RequestMapping("/admin/create_article")
     public String create() {
         return "article_editor";
 

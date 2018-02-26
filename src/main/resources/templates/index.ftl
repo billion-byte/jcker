@@ -8,8 +8,6 @@
                 <p>
                     nihaofalsdjfa;ldksfja;ksdfj;alksdjfetlkjhasdkfj<!--more-->
                     asdfljasd;flja;sdf
-                    asdf;kjotiadf;alsdfkj
-                    sdf;kjetiapdkfj
                 </p>
                 <p class="autor">
                     <span class="lm f_l"><a href="/">Alan Turing</a></span>

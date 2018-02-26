@@ -12,7 +12,7 @@
     <!-- Bootstrap core CSS -->
     <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="../mdeditor/css/mdeditor.css">
+    <link rel="stylesheet" href="/mdeditor/css/mdeditor.css">
     <!-- Custom styles for this template -->
     <style type="text/css">
         #mdeditor {
@@ -29,6 +29,7 @@
         <form action="/admin/save_article" method="post">
             <div class="form-group">
                 <label>Title</label>
+                <input type="hidden" name="id" value="<#if article??>${article.id!''}<#else ></#if>">
                 <input type="text" name="title" value="<#if article??>${article.title!''}<#else ></#if>">
                 <input type="submit" value="Save">
                 <textarea name="content" id="mdeditor" cols="30" rows="30" class="form-control">
