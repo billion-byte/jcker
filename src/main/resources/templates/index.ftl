@@ -24,6 +24,7 @@
 <#else >
     <h1>There is no articles right.</h1>
 </#if>
+    <ul class="pagination" id="pagination"></ul>
 </div>
 
 <#include "footer.ftl">
