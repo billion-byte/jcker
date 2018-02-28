@@ -67,11 +67,11 @@ public class ArticleController {
     public String save(Article article, Model model) {
 
         System.out.println("article = " + article);
-        if (article.getId() <= 0) {
+        //if (article.getId() <= 0) {
             article.setCommentNum(new Random(100).nextInt(100));
             article.setViewNum(new Random(1000).nextInt(10000));
             article.setCreateDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
-        }
+        //}
         articleDao.save(article);
         model.addAttribute("menuList",menuDao.findAll());
         model.addAttribute("articleList", articleDao.findAll());

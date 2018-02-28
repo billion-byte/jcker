@@ -20,16 +20,15 @@
                 <input type="text" name="title" value="<#if article??>${article.title!''}<#else ></#if>">
                 <input type="submit" value="Save">
                 <textarea name="content" id="mdeditor" cols="30" rows="30" class="form-control">
-                    <#if article??>${article.content!''}<#else ></#if>
+                    <#if article??>${article.content!''}<#else >请开始你的表演</#if>
                 </textarea>
             </div>
         </form>
     </div>
 
-</div><!-- /.container -->
+</div>
 <script src="/js/jquery.min.js"></script>
 <script src="/mdeditor/js/mdeditor.min.js"></script>
-
 <script>
     var md = new MdEditor('#mdeditor', {
         status: false,
