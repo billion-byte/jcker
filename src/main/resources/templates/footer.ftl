@@ -1,5 +1,5 @@
 <footer id="footer" class="footer">
-    <div class="container">
+    <div>
         <hr>
         <div class="tooter-social" STYLE="text-align: center">
             <a class="social rss" target="blank" href="/feed">RSS</a>&nbsp;&nbsp;&nbsp;
@@ -8,17 +8,17 @@
             <a class="social twitter" target="blank" href="https://twitter.com/mrblabla2013">Twitter</a>
         </div>
         <hr>
-        <div class="row">
-            <div class="col-sm-4">
-                <div class="ftlogo"><a href="#" target="_blank"><img src="../images/logo.png"></a></div>
-                <div class="ft-title">
+        <div class="container">
+            <div class="row">
+            <div class="col-md-4 hidden-sm-down">
+                <div ><a href="#" target="_blank"><img class="img-fluid" src="../images/logo.png"></a></div>
+                <div >
                     <p>内心强大到混蛋,让优秀成为一种习惯</p>
                 </div>
-                <p class="ft-copyright">Powered by <a href="https://www.github.com/jckerorg">JCKER</a></p>
-                <p class="ft-copyright">Copyright 2016 <a href="https://www.github.com/jckerorg">JCKER.ORG</a></p>
+                <p >Powered by <a href="https://www.github.com/jckerorg">JCKER</a></p>
+                <p >Copyright 2016 <a href="https://www.github.com/jckerorg">JCKER.ORG</a></p>
             </div>
-            <div class="col-sm-4">
-
+            <div class="col-md-4 ">
                 <#if recent_articles??>
                     <label>最新文章</label>
                     <ul id="recent_articles" class="list-group" style="list-style: none;">
@@ -29,28 +29,30 @@
                 <#else>
                     <label>友情链接</label>
                     <ul id="friend_links" class="list-group" style="list-style: none;">
+                    <#if friendLinkList??>
                         <#list friendLinkList as friendLink>
                             <li id="${friendLink.id}"><a href="${friendLink.link}">${friendLink.name}</a> </li>
                         </#list>
+                    <#else >
+                    </#if>
                     </ul>
                 </#if>
-
             </div>
-            <div class="col-sm-4">
+            <div class="col-md-4 hidden-sm-down">
                 欢迎关注微信公众号：
-                <img src="../images/wechat_qrcode.jpg" style="width: 155px;height: 155px;">
+                <img class="img-fluid" src="/images/wechat_qrcode.jpg" style="width: 155px;height: 155px;">
             </div>
         </div>
-
-
+        </div>
     </div>
-    <div id="tbox"><a id="togbook" href="/"></a> <a id="gotop" href="javascript:void(0)"></a></div>
-
-
-    <#--<script src="../jquery/jquery.min.js"></script>-->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </footer>
+
+<script src="/js/jquery.min.js"></script>
+<script src="/highlight/js/highlight.pack.js"></script>
+<script src="/js/tether.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
 </body>
 </html>

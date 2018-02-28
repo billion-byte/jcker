@@ -44,17 +44,22 @@ public class ArticleController {
         }
         model.addAttribute("articleList", articleList);
         model.addAttribute("friendLinkList", friendLinkDao.findAll());
+        model.addAttribute("recent_articles", articleList);
         return "index";
     }
 
     @RequestMapping("/about")
     public String about(Model model) {
         model.addAttribute("menuList",menuDao.findAll());
-        List<Article> articleList = articleDao.findRecentArticles();
+/*        List<Article> articleList = articleDao.findRecentArticles();
         for (Article article : articleList) {
             article.setContent(JckerUtils.mdToHtml(article.getContent()));
         }
-        model.addAttribute("articleList", articleList);
+        model.addAttribute("articleList", articleList);*/
+        model.addAttribute("friendLinkList", friendLinkDao.findAll());
+        Article article = articleDao.getArticleByTitle("about");
+        article.setContent(JckerUtils.mdToHtml(article.getContent()));
+        model.addAttribute("about", article);
         return "about";
     }
 
@@ -62,12 +67,15 @@ public class ArticleController {
     public String save(Article article, Model model) {
 
         System.out.println("article = " + article);
-        article.setCommentNum(new Random(100).nextInt(100));
-        article.setViewNum(new Random(1000).nextInt(10000));
-        article.setCreateDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+        if (article.getId() <= 0) {
+            article.setCommentNum(new Random(100).nextInt(100));
+            article.setViewNum(new Random(1000).nextInt(10000));
+            article.setCreateDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+        }
         articleDao.save(article);
         model.addAttribute("menuList",menuDao.findAll());
         model.addAttribute("articleList", articleDao.findAll());
+        model.addAttribute("recent_articles", articleDao.findAll());
         return "index";
     }
     @RequestMapping("/admin/edit_article/{id}")
@@ -85,7 +93,7 @@ public class ArticleController {
         System.out.println("article = " + article);
         article.setContent(JckerUtils.mdToHtml(article.getContent()));
 
-        List<Article> articleList = articleDao.findAll();
+        List<Article> articleList = articleDao.findRecentArticles();
 
         model.addAttribute("recent_articles", articleList);
         model.addAttribute("article", article);

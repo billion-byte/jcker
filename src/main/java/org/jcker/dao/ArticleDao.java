@@ -17,4 +17,5 @@ public interface ArticleDao extends JpaRepository<Article, Integer> {
     @Query(value = "select t.* from t_article t limit 10 ", nativeQuery = true)
     List<Article> findRecentArticles();
 
+    Article getArticleByTitle(String title);
 }
