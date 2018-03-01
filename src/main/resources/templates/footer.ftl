@@ -10,39 +10,31 @@
         <hr>
         <div class="container">
             <div class="row">
-            <div class="col-md-4 hidden-sm-down">
-                <div ><a href="/" target="_blank"><img class="img-fluid" src="../images/logo.png"></a></div>
-                <div >
-                    <p>内心强大到混蛋,让优秀成为一种习惯</p>
+                <div class="col-md-4 hidden-sm-down">
+                    <div><a href="/" target="_blank"><img class="img-fluid" src="../images/logo.png"></a></div>
+                    <div>
+                        <p>内心强大到混蛋,让优秀成为一种习惯</p>
+                    </div>
+                    <p style="margin-bottom: 0;">Powered by <a href="https://www.github.com/jckerorg">JCKER</a></p>
+                    <p style="margin-bottom: 0;">Copyright 2016 <a href="https://www.github.com/jckerorg">JCKER.ORG</a>
+                    </p>
                 </div>
-                <p style="margin-bottom: 0;">Powered by <a href="https://www.github.com/jckerorg">JCKER</a></p>
-                <p style="margin-bottom: 0;">Copyright 2016 <a href="https://www.github.com/jckerorg">JCKER.ORG</a></p>
-            </div>
-            <div class="col-md-4 hidden-sm-down">
-                <#if recent_articles??>
-                    <label>最新文章</label>
-                    <ul id="recent_articles" class="list-group" style="list-style: none;">
-                    <#list recent_articles as article>
-                        <li id="${article.id}"><a href="/article/${article.id}">${article.title}</a> </li>
-                    </#list>
-                    </ul>
-                <#else>
+                <div class="col-md-4 hidden-sm-down">
                     <label>友情链接</label>
                     <ul id="friend_links" class="list-group" style="list-style: none;">
                     <#if friendLinkList??>
                         <#list friendLinkList as friendLink>
-                            <li id="${friendLink.id}"><a href="${friendLink.link}">${friendLink.name}</a> </li>
+                            <li id="${friendLink.id}"><a href="${friendLink.link}">${friendLink.name}</a></li>
                         </#list>
                     <#else >
                     </#if>
                     </ul>
-                </#if>
+                </div>
+                <div class="col-md-4 hidden-sm-down">
+                    欢迎关注微信公众号：
+                    <img class="img-fluid" src="/images/wechat_qrcode.jpg" style="width: 155px;height: 155px;">
+                </div>
             </div>
-            <div class="col-md-4 hidden-sm-down">
-                欢迎关注微信公众号：
-                <img class="img-fluid" src="/images/wechat_qrcode.jpg" style="width: 155px;height: 155px;">
-            </div>
-        </div>
         </div>
     </div>
 </footer>
@@ -55,20 +47,21 @@
 <script>
     hljs.initHighlightingOnLoad();
 
-    <#if articleList??>
+    <#if pageObject??>
     $(function () {
         $('#pagination').pagination({
-            items: ${((articleList?size + 6)/7)?int},
-            itemOnPage: 7,
-            currentPage: 1,
+            items: ${pageObject.totalPages},
+            itemOnPage: ${pageObject.size},
+            currentPage: ${pageObject.number},
             cssStyle: 'light-theme',
             prevText: '<span aria-hidden="true">&laquo;</span>',
             nextText: '<span aria-hidden="true">&raquo;</span>',
+            hrefTextPrefix: '/page/',
             onInit: function () {
                 // fire first page loading
             },
             onPageClick: function (page, evt) {
-                // some code
+                // query article by page
             }
         });
     });

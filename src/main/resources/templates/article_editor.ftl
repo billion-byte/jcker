@@ -1,30 +1,35 @@
 <#include "header.ftl">
-    <link rel="stylesheet" href="/mdeditor/css/mdeditor.css">
-    <!-- Custom styles for this template -->
-    <style type="text/css">
-        #mdeditor {
-            margin-top: 100px;
-        }
-    </style>
+<link rel="stylesheet" href="/mdeditor/css/mdeditor.css">
+<!-- Custom styles for this template -->
+<style type="text/css">
+    #mdeditor {
+        margin-top: 100px;
+    }
+</style>
 </head>
 
 <body>
 
 <div class="container">
 
-    <div class="starter-template">
-        <form action="/admin/save_article" method="post">
-            <div class="form-group">
-                <label>Title</label>
-                <input type="hidden" name="id" value="<#if article??>${article.id!''}<#else ></#if>">
-                <input type="text" name="title" value="<#if article??>${article.title!''}<#else ></#if>">
-                <input type="submit" value="Save">
-                <textarea name="content" id="mdeditor" cols="30" rows="30" class="form-control">
-                    <#if article??>${article.content!''}<#else >请开始你的表演</#if>
-                </textarea>
-            </div>
-        </form>
-    </div>
+
+    <form action="/admin/save_article" method="post">
+        <div>
+            <label>Title</label>
+        <#if article??>
+            <input type="hidden" name="id" value="${article.id}">
+            <input type="text" name="title" value="${article.title}">
+            <input type="submit" value="Save">
+            <textarea name="content" id="mdeditor" cols="30" rows="30"
+                      class="form-control">${article.content}</textarea>
+        <#else >
+            <input type="text" name="title" value="" placeholder="标题Topic">
+            <input type="submit" value="Save">
+            <textarea name="content" id="mdeditor" cols="30" rows="30"
+                      class="form-control">请开始你的表演</textarea>
+        </#if>
+        </div>
+    </form>
 
 </div>
 <script src="/js/jquery.min.js"></script>

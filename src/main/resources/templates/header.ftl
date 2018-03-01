@@ -7,6 +7,7 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="">
+    <link rel="icon" href="/iamges/favicon.ico">
     <title>
     <#if article??>${article.title}<#else>Jcker</#if>
     </title>

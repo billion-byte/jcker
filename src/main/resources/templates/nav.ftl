@@ -1,6 +1,6 @@
 </head>
 <body>
-<div class="container">
+<div class="container-fluid">
     <nav class="navbar navbar-inverse ">
         <a class="navbar-brand" href="/"><img class="fluid" src="/images/logo.png" style="width:175px;height:45px;"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample10"
