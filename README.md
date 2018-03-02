@@ -17,6 +17,7 @@
 * highlight
 * mdeditor
 * jquery.simplePagination
+* jquery.datatables
 ## 联系方式 
 邮箱：helloalanturing@gmail.com  
 QQ群：461217554(技术群)  363547584(聊骚群)  
