@@ -42,13 +42,15 @@
 <script src="/js/jquery.min.js"></script>
 <script src="/highlight/js/highlight.pack.js"></script>
 <script src="/js/tether.min.js"></script>
+<script src="/js/datatables.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/jquery.simplePagination.js"></script>
 <script>
     hljs.initHighlightingOnLoad();
 
-    <#if pageObject??>
+
     $(function () {
+    <#if pageObject??>
         $('#pagination').pagination({
             items: ${pageObject.totalPages},
             itemOnPage: ${pageObject.size},
@@ -64,10 +66,20 @@
                 // query article by page
             }
         });
-    });
     <#else >
-    //do nothing
+        $('#menu_table').DataTable( {
+            ajax: "/admin/menuList",
+            serverSide: true,
+            processing: true,
+            columns: [
+                { data: "id" },
+                { data: "name" },
+                { data: "link" }
+            ]
+        } );
     </#if>
+    });
+
 
 </script>
 </body>

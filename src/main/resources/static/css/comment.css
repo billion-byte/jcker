@@ -1,0 +1,20 @@
+@charset "utf-8";
+/* CSS Document */
+
+input{
+    border: 0;
+    padding: 0;
+}
+input:focus, textarea:focus {
+    outline: none;
+}
+textarea {
+    height: 150px;
+    width:100%;
+    outline: none;
+    overflow: hidden;
+    resize: none;
+    border: 0;
+    padding: 0 15px 0;
+}
+

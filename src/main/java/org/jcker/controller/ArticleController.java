@@ -2,9 +2,11 @@ package org.jcker.controller;
 
 import org.apache.log4j.Logger;
 import org.jcker.dao.ArticleDao;
+import org.jcker.dao.CommentDao;
 import org.jcker.dao.FriendLinkDao;
 import org.jcker.dao.MenuDao;
 import org.jcker.domain.Article;
+import org.jcker.domain.Comment;
 import org.jcker.utils.JckerUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -36,6 +38,8 @@ public class ArticleController {
     MenuDao menuDao;
     @Autowired
     FriendLinkDao friendLinkDao;
+    @Autowired
+    CommentDao commentDao;
 
     @RequestMapping("/")
     public String index(Model model) {
@@ -99,8 +103,11 @@ public class ArticleController {
 
         List<Article> articleList = articleDao.findRecentArticles();
 
+        List<Comment> commentList = commentDao.findAllByArticleId(id);
+
         model.addAttribute("recent_articles", articleList);
         model.addAttribute("article", article);
+        model.addAttribute("commentList", commentList);
         return "page";
     }
 

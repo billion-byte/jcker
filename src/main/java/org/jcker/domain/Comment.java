@@ -18,6 +18,44 @@ public class Comment {
     private int articleId;
     private String author;
     private String content;
+    private String email;
+    private String alias;
+    private String link;
+    @Column(name = "create_date")
+    private String createDate;
+
+
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getAlias() {
+        return alias;
+    }
+
+    public void setAlias(String alias) {
+        this.alias = alias;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
 
     public int getId() {
         return id;

@@ -1,5 +1,6 @@
 <#include "header.ftl">
 <link rel="stylesheet" href="/css/page.css">
+<link rel="stylesheet" href="/css/comment.css">
 <link rel="stylesheet" href="/highlight/css/xcode.css">
 
 <#include "nav.ftl">
@@ -9,6 +10,8 @@
         <hr>
     ${article.content}
     </div>
+    <hr>
+    <#include "comment.ftl">
 </div>
 
 <#include "footer.ftl">
