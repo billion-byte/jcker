@@ -5,7 +5,8 @@
             <a class="social rss" target="blank" href="/feed">RSS</a>&nbsp;&nbsp;&nbsp;
             <a class="social zhihu" target="blank" href="https://www.zhihu.com/people/ZHIHU">知乎</a>&nbsp;&nbsp;
             <a class="social github" target="blank" href="https://github.com/jckerorg">Github</a>&nbsp;&nbsp;
-            <a class="social twitter" target="blank" href="https://twitter.com/mrblabla2013">Twitter</a>
+            <a class="social twitter" target="blank" href="https://twitter.com/helloalanturing">Twitter</a>&nbsp;&nbsp;
+            <a class="social csdn" target="blank" href="http://blog.csdn.net/u012137018">CSDN</a>
         </div>
         <hr>
         <div class="container">
@@ -43,44 +44,100 @@
 <script src="/highlight/js/highlight.pack.js"></script>
 <script src="/js/tether.min.js"></script>
 <script src="/js/datatables.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/jquery-form/form@4.2.2/dist/jquery.form.min.js" integrity="sha384-FzT3vTVGXqf7wRfy8k4BiyzvbNfeYjK+frTVqZeNDFl8woCbF0CYG6g2fMEFFo/i" crossorigin="anonymous"></script>
 <script src="/js/bootstrap.min.js"></script>
-<script src="/js/jquery.simplePagination.js"></script>
+<script src="/js/jquery.twbsPagination.min.js"></script>
+<script src="/js/jcker.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-tagsinput/1.3.6/jquery.tagsinput.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/additional-methods.min.js"></script>
 <script>
     hljs.initHighlightingOnLoad();
 
 
     $(function () {
     <#if pageObject??>
-        $('#pagination').pagination({
-            items: ${pageObject.totalPages},
-            itemOnPage: ${pageObject.size},
-            currentPage: ${pageObject.number},
-            cssStyle: 'light-theme',
-            prevText: '<span aria-hidden="true">&laquo;</span>',
-            nextText: '<span aria-hidden="true">&raquo;</span>',
-            hrefTextPrefix: '/page/',
-            onInit: function () {
-                // fire first page loading
-            },
-            onPageClick: function (page, evt) {
-                // query article by page
+        $('#pagination').twbsPagination({
+            startPage: ${pageObject.number},
+            totalPages: ${pageObject.totalPages},
+            visiblePages: 3,
+            initiateStartPageClick: false,
+            onPageClick: function (event, page) {
+                window.location.href="/page/"+page;
             }
+
         });
     <#else >
-        $('#menu_table').DataTable( {
+        $('#menu_table').DataTable({
             ajax: "/admin/menuList",
             serverSide: true,
             processing: true,
             columns: [
-                { data: "id" },
-                { data: "name" },
-                { data: "link" }
+                {data: "id"},
+                {data: "name"},
+                {data: "link"}
             ]
-        } );
+        });
     </#if>
+
+        $.validator.setDefaults({
+            submitHandler: function () {
+                alert("submitted!");
+            }
+        });
+
+        $("#comment_form").validate({
+            rules: {
+                author: {
+                    required: true,
+                    minlength: 2
+                },
+                email: {
+                    required: true,
+                    email: true
+                },
+                link: {
+                    required: false,
+                    url: true
+                },
+                content: {
+                    required: true,
+                    minlength: 5,
+                    maxlength: 200
+                }
+            },
+            messages: {
+                author: {
+                    required: "Please enter a username",
+                    minlength: "Your username must consist of at least 2 characters"
+                },
+                email: "Please enter a valid email address",
+                link: "Please enter a valid url",
+                content: {
+                    required: "Please enter your message",
+                    minlength: "at least 5 characters",
+                    maxlength: "at most 2000 characters"
+                }
+            },
+            errorElement: "em",
+            errorPlacement: function (error, element) {
+                // Add the `help-block` class to the error element
+                error.addClass("help-block");
+
+                if (element.prop("type") === "checkbox") {
+                    error.insertAfter(element.parent("label"));
+                } else {
+                    error.insertAfter(element);
+                }
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).parents(".col-sm-5").addClass("has-error").removeClass("has-success");
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).parents(".col-sm-5").addClass("has-success").removeClass("has-error");
+            }
+        });
     });
 
 
 </script>
-</body>
-</html>

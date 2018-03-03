@@ -13,7 +13,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "sys_menu")
-public class Menu {
+public class Menu extends BaseEntity {
     @Id
     @GeneratedValue
     private int id;

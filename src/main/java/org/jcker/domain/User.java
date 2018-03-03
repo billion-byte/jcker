@@ -10,7 +10,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "sys_user")
-public class User {
+public class User extends BaseEntity {
     @Id
     @GeneratedValue
     private int id;

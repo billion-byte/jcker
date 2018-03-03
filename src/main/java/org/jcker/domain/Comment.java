@@ -10,7 +10,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "t_comment")
-public class Comment {
+public class Comment extends BaseEntity {
     @Id
     @GeneratedValue
     private int id;

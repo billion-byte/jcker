@@ -52,6 +52,24 @@ public class JckerUtils {
         }*/
         return content;
     }
+
+    /**
+     * 提取html中的文字
+     *
+     * @param html
+     * @return
+     */
+    public static String htmlToText(String html) {
+        if (!StringUtils.isEmpty(html)) {
+            return html.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
+        }
+        return "";
+    }
+
+    public static String mdToText(String md) {
+        return htmlToText(mdToHtml(md));
+    }
+
     static class LinkAttributeProvider implements AttributeProvider {
         @Override
         public void setAttributes(Node node, String tagName, Map<String, String> attributes) {

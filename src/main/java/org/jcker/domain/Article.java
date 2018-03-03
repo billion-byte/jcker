@@ -10,7 +10,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "t_article")
-public class Article {
+public class Article extends BaseEntity {
     @Id
     @GeneratedValue
     private int id;
@@ -24,6 +24,25 @@ public class Article {
     private int viewNum;
     @Column(name = "comment_num")
     private int commentNum;
+    private String category;
+    @Transient
+    private String preview;
+
+    public String getPreview() {
+        return preview;
+    }
+
+    public void setPreview(String preview) {
+        this.preview = preview;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
 
     public String getCreateDate() {
         return createDate;
@@ -81,8 +100,4 @@ public class Article {
         this.title = title;
     }
 
-    @Override
-    public String toString() {
-        return title;
-    }
 }

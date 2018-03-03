@@ -5,14 +5,28 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * Created by <a href='http://jcker.org'>Alan Turing</a>
+ * on 2018-03-03 at 2:54 AM
+ *
+ * @version 1.0
+ */
 @Entity
-@Table(name = "t_friend_link")
-public class FriendLink extends BaseEntity {
+@Table(name = "t_category")
+public class Category extends BaseEntity {
     @Id
     @GeneratedValue
     private int id;
     private String name;
-    private String link;
+    private int amount;
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
 
     public int getId() {
         return id;
@@ -28,13 +42,5 @@ public class FriendLink extends BaseEntity {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getLink() {
-        return link;
-    }
-
-    public void setLink(String link) {
-        this.link = link;
     }
 }
